@@ -1,9 +1,9 @@
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
-import { MakeAnswer } from 'test/factories/make-answer'
+import { makeAnswer } from 'test/factories/make-answer'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { InMemoryQuestionsRepository } from 'test/repositories/in-memory-questions-repository'
 import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-cases/choose-question-best-answer'
-import { MakeQuestion } from 'test/factories/make-question'
+import { makeQuestion } from 'test/factories/make-question'
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/in-memory-question-attachments-repository'
@@ -18,28 +18,25 @@ describe('Choose Question Best Answer', () => {
   beforeEach(() => {
     inMemoryAnswerAttachmentsRepository =
       new InMemoryAnswerAttachmentsRepository()
-
     inMemoryQuestionAttachmentsRepository =
       new InMemoryQuestionAttachmentsRepository()
-
     inMemoryQuestionsRepository = new InMemoryQuestionsRepository(
       inMemoryQuestionAttachmentsRepository,
     )
-
     inMemoryAnswersRepository = new InMemoryAnswersRepository(
       inMemoryAnswerAttachmentsRepository,
     )
 
     sut = new ChooseQuestionBestAnswerUseCase(
-      inMemoryAnswersRepository,
       inMemoryQuestionsRepository,
+      inMemoryAnswersRepository,
     )
   })
 
   it('should be able to choose the question best answer', async () => {
-    const question = MakeQuestion()
+    const question = makeQuestion()
 
-    const answer = MakeAnswer({
+    const answer = makeAnswer({
       questionId: question.id,
     })
 
@@ -55,11 +52,11 @@ describe('Choose Question Best Answer', () => {
   })
 
   it('should not be able to to choose another user question best answer', async () => {
-    const question = MakeQuestion({
+    const question = makeQuestion({
       authorId: new UniqueEntityID('author-1'),
     })
 
-    const answer = MakeAnswer({
+    const answer = makeAnswer({
       questionId: question.id,
     })
 

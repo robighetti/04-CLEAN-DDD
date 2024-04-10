@@ -2,7 +2,8 @@ import { AnswerAttachmentsRepository } from '@/domain/forum/application/reposito
 import { AnswerAttachment } from '@/domain/forum/enterprise/entities/answer-attachment'
 
 export class InMemoryAnswerAttachmentsRepository
-  implements AnswerAttachmentsRepository {
+  implements AnswerAttachmentsRepository
+{
   public items: AnswerAttachment[] = []
 
   async findManyByAnswerId(answerId: string) {

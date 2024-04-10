@@ -11,11 +11,13 @@ export interface SendNotificationUseCaseRequest {
 
 export type SendNotificationUseCaseResponse = Either<
   null,
-  { notification: Notification }
+  {
+    notification: Notification
+  }
 >
 
 export class SendNotificationUseCase {
-  constructor(private notificationsRepository: NotificationsRepository) { }
+  constructor(private notificationsRepository: NotificationsRepository) {}
 
   async execute({
     recipientId,

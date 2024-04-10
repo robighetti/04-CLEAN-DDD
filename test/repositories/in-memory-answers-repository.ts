@@ -9,7 +9,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
   constructor(
     private answerAttachmentsRepository: AnswerAttachmentsRepository,
-  ) { }
+  ) {}
 
   async findById(id: string) {
     const answer = this.items.find((item) => item.id.toString() === id)
@@ -35,7 +35,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
     DomainEvents.dispatchEventsForAggregate(answer.id)
   }
 
-  async update(answer: Answer) {
+  async save(answer: Answer) {
     const itemIndex = this.items.findIndex((item) => item.id === answer.id)
 
     this.items[itemIndex] = answer

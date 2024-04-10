@@ -5,7 +5,7 @@ import {
   AnswerAttachmentProps,
 } from '@/domain/forum/enterprise/entities/answer-attachment'
 
-export function MakeAnswerAttachment(
+export function makeAnswerAttachment(
   override: Partial<AnswerAttachmentProps> = {},
   id?: UniqueEntityID,
 ) {

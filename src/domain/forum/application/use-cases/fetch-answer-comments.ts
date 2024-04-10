@@ -9,7 +9,9 @@ interface FetchAnswerCommentsUseCaseRequest {
 
 type FetchAnswerCommentsUseCaseResponse = Either<
   null,
-  { answerComments: AnswerComment[] }
+  {
+    answerComments: AnswerComment[]
+  }
 >
 
 export class FetchAnswerCommentsUseCase {

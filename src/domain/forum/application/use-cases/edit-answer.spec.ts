@@ -1,10 +1,10 @@
 import { EditAnswerUseCase } from './edit-answer'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answers-repository'
-import { MakeAnswer } from 'test/factories/make-answer'
+import { makeAnswer } from 'test/factories/make-answer'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { NotAllowedError } from '@/core/errors/errors/not-allowed-error'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/in-memory-answer-attachments-repository'
-import { MakeAnswerAttachment } from 'test/factories/make-answer-attachments'
+import { makeAnswerAttachment } from 'test/factories/make-answer-attachments'
 
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
@@ -25,7 +25,7 @@ describe('Edit Answer', () => {
   })
 
   it('should be able to edit a answer', async () => {
-    const newAnswer = MakeAnswer(
+    const newAnswer = makeAnswer(
       {
         authorId: new UniqueEntityID('author-1'),
       },
@@ -35,11 +35,11 @@ describe('Edit Answer', () => {
     await inMemoryAnswersRepository.create(newAnswer)
 
     inMemoryAnswerAttachmentsRepository.items.push(
-      MakeAnswerAttachment({
+      makeAnswerAttachment({
         answerId: newAnswer.id,
         attachmentId: new UniqueEntityID('1'),
       }),
-      MakeAnswerAttachment({
+      makeAnswerAttachment({
         answerId: newAnswer.id,
         attachmentId: new UniqueEntityID('2'),
       }),
@@ -68,7 +68,7 @@ describe('Edit Answer', () => {
   })
 
   it('should not be able to edit a answer from another user', async () => {
-    const newAnswer = MakeAnswer(
+    const newAnswer = makeAnswer(
       {
         authorId: new UniqueEntityID('author-1'),
       },
