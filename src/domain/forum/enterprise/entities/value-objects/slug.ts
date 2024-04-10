@@ -10,16 +10,16 @@ export class Slug {
   }
 
   /**
-   * Receives a string and normalizes it to a slug
+   * Receives a string and normalize it as a slug.
    *
-   * Example: "An example title" -> "an-example-title"
+   * Example: "An example title" => "an-example-title"
    *
-   * @param text
+   * @param text {string}
    */
-  static createFromText(text: string) {
+  static createFromText(text: string): Slug {
     const slugText = text
       .normalize('NFKD')
-      .toLocaleLowerCase()
+      .toLowerCase()
       .trim()
       .replace(/\s+/g, '-')
       .replace(/[^\w-]+/g, '')
